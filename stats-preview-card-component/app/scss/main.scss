@@ -1,0 +1,139 @@
+// variebels
+
+$VeryDarkBlue: hsl(233, 47%, 7%);
+$DarkDesaturatedBlue: hsl(244, 38%, 16%);
+$SoftViolet: hsl(277, 64%, 61%);
+
+$White: hsl(0, 0%, 100%);
+$SlightlyTransparentWhite: hsla(0, 0%, 100%, 0.75);
+$SlightlyTransparentWhite: hsla(0, 0%, 100%, 0.6);
+
+html {
+   font-size: 100%;
+   box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+   box-sizing: inherit;
+}
+* {
+   margin: 0;
+   padding: 0;
+}
+body {
+   line-height: 1.3;
+   background-color: $VeryDarkBlue;
+   color: #fff;
+   height: 100vh;
+}
+a,
+a:visited,
+a:hover {
+   text-decoration: none;
+}
+img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   display: block;
+}
+
+/* card */
+.main {
+   display: grid;
+   place-content: center;
+   height: 100%;
+   padding: 0 2rem;
+}
+.card {
+   background: $DarkDesaturatedBlue;
+   overflow: hidden;
+   border-radius: 0.5rem;
+   &__img {
+      position: relative;
+      &::after {
+         content: '';
+         position: absolute;
+         inset: 0;
+         background-color: $SoftViolet;
+         background-blend-mode: multiply;
+          opacity: .5;
+      }
+
+      &--mobile {
+         display: block;
+      }
+      &--desktop {
+         display: none;
+      }
+   }
+   &__text {
+      padding: clamp(2.3rem, 0.5vw, 10rem);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      span {
+         color: $SoftViolet;
+      }
+      h1 {
+         width: 100%;
+         font-size: clamp(1.3rem, 2.5vw, 2.2rem);
+      }
+      > p {
+         font-size: clamp(0.8rem, 2.5vw, 0.9rem);
+         line-height: 1.5;
+         padding: 1rem 0;
+         color: $SlightlyTransparentWhite;
+      }
+      @media only screen and (min-width: 40em) {
+         text-align: left;
+      }
+   }
+
+   &__stats {
+      width: 100%;
+      &--item {
+         padding: 0.5rem 0;
+      }
+
+      h2 {
+         font-size: 1rem;
+         margin-bottom: 0.2rem;
+      }
+      p {
+         text-transform: uppercase;
+         font-size: clamp(0.6rem, 2.5vw, 0.7rem);
+         color: $SlightlyTransparentWhite;
+      }
+      @media only screen and (min-width: 40em) {
+         display: flex;
+         &--item:not(:last-child) {
+            margin-right: 2rem;
+         }
+      }
+   }
+}
+
+@media only screen and (min-width: 40em) {
+   .card {
+      display: flex;
+      flex-direction: row-reverse;
+      &__img {
+         width: 25rem;
+         max-width: 500px;
+         &--mobile {
+            display: none;
+         }
+         &--desktop {
+            display: block;
+         }
+      }
+      &__text {
+         width: 25rem;
+         text-align: left;
+      }
+   }
+}
